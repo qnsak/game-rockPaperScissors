@@ -1,0 +1,225 @@
+<html>
+    <head>
+        <style>
+            main {
+                width: 300px;
+                height: fit-content;
+                background-color: #f8f8f882;
+                margin: 20px auto;
+                border: solid;
+                border-width: 6px;
+                border-color: rgb(255 202 49 / 15%);
+                box-shadow: 0px 2px 4px rgb(242, 242, 203);
+                padding: 10px;
+            }
+            canvas {
+                border-style: groove;
+                border-color: #d5164b57;
+                width: 250px;
+                height: 200px;
+                margin: auto;
+                display: block;
+            }
+            button {
+                width: 100%;
+                border: solid;
+                border-width: 4px;
+                border-radius: 5px;
+                border-color: #b4d8e7;
+                background-color: #6995e7;
+                color: white;
+                padding: 5px 15px;
+                margin: 2px;
+            }
+            button:hover {
+                border-color: #0000bb;
+            }
+            .control {
+                position: relative;
+                height: 150px;
+                width: 100%;
+
+                & > .step {
+                    position: absolute;
+                    width: 100%;
+                }
+
+                & > .match {
+                    top: 40px;
+                    text-align: center;
+
+                    & > button {
+                        width: fit-content;
+                    }
+                }
+
+                & > .ready {
+                    top: 40px;
+                    text-align: center;
+                }
+
+                & > .end {
+                    top: 40px;
+                }
+            }
+            .timer {
+                text-align: center;
+                color: rgb(254, 61, 22);
+            }
+            .players {
+                display: flex;
+                font-size: 8px;
+                padding: 5px 0px;
+
+                & > .player {
+                    flex: 1;
+                    margin: 5px;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    color: rgb(0, 0, 0);
+                    border-color: #9fd1ed;
+                    border-style: solid;
+                    border-width: 4px;
+                    padding: 0px 2px;
+                }
+            }
+            .initScreen {
+                display: flex;
+                padding: 15px 0px;
+                flex-direction: column;
+                & > .item {
+                    flex: 1;
+                    margin: 5px;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    color: rgb(0, 0, 0);
+                }
+            }
+            .skills {
+                margin: 5px auto;
+                width: fit-content;
+
+                & > input {
+                    pointer-events: none;
+                    position: absolute;
+                    visibility: hidden;
+                }
+
+                & > input[type="radio"]:checked+label {
+                    border: 2px solid #e00808;
+                }
+
+                & > label {
+                    display: inline-block;
+                    border: black;
+                    height: 40px;
+                    width: 40px;
+                    border: 2px solid #1c1919;
+                    border-radius: 50%;
+          
+                    background-size: 100% 100%;
+
+                    &:nth-of-type(1) {
+                        background-image: url("/assets/images/scissors.jpg");
+                    }
+
+                    &:nth-of-type(2) {
+                        background-image: url("/assets/images/rock.jpg");
+                    }
+
+                    &:nth-of-type(3) {
+                        background-image: url("/assets/images/paper.jpg");
+                    }
+
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+
+        </header>
+        <main>
+            <div class="players">
+                <span class="player">
+                    <p>玩家</p>
+                    <p id="user"></p>
+                </span>
+                <span class="player">
+                    <p>對手</p>
+                    <p id="opponentId"></p>
+                </span>
+            </div>
+            <canvas id="game_sreen" width="200" height="150"></canvas>      
+            <div class="control">
+                <div
+                    id="init"
+                    class="initScreen step"
+                >
+                    <span 
+                        class="item"
+                    >
+                        <button
+                            id="createGameBtn"
+                        >
+                            建立遊戲
+                        </button>
+                    </span>
+                    <span 
+                        class="item"
+                    >
+                        <button id="joinGameBtn">
+                            加入遊戲
+                        </button>
+                    </span>
+                    <span 
+                        class="item"
+                    >
+                        <label>邀請碼</label>
+                        <input id="roomKey" type="text">
+                    </span>
+                </div>
+                <div id="match_sreen" class="step match">
+                    <input type="text" id="key_text" readonly>
+                    <button type="button" id="copyBtn">複製</button>
+                </div>
+                <div id="ready_sreen" class="step ready">
+                    <button id="readyGameBtn">
+                        準備遊戲
+                    </button>
+                </div>
+                <div id="select_sreen" class="step">
+                    <div>
+                        <p id="timer" class="timer"></p>
+                    </div>
+                    <div id="skills" class="skills">
+                        <input id="skill_scissors" type="radio" name="skill" value="3">
+                        <label for="skill_scissors"></label>
+                        <input id="skill_rock" type="radio" name="skill" value="1">
+                        <label for="skill_rock"></label>
+                        <input id="skill_paper" type="radio" name="skill" value="2">
+                        <label for="skill_paper"></label>
+                    </div>
+                </div>
+                <div id="end_sreen" class="step end">
+                    <button
+                        id="againBtn"
+                    >
+                        再一次
+                    </button>
+                    <button
+                        id="endBtn"
+                    >
+                        到此為止
+                    </button>
+                </div>
+            </div>
+        </main>
+        <footer>
+
+        </footer>
+        <script type="module" src="/js/index.js"></script>
+    </body>
+</html>
