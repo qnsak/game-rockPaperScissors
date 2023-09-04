@@ -1,21 +1,2 @@
-// module1.js
-var express = require('express');
-var expressWs = require('express-ws');
-
-var router = express.Router();
-expressWs(router);
-
-router
-  .ws('/user', function (ws, req){
-      ws.on('message', function (msg) {
-          // 业务代码
-          ...
-      })
-   })
-  .get('/user', function(req, resp) {
-  })
-  .post('/user', function(req, resp) {
-  })
-  ...
-
-module.exports = router;
+# 簡介
+> 使用 websocket 開發簡單連線遊戲，遊戲是童年遊戲剪刀石頭布。以 Node.js 框架 Express.js 為基礎架構搭配 ws 套件，遊戲流程為建立遊戲、 等待配對、 確定開始、 進行遊戲、 遊戲結果。
